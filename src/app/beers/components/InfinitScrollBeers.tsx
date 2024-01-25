@@ -1,21 +1,10 @@
 "use client";
 
-import { Suspense, useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { fetchAllBeersAction } from "../actions";
-
-import Image from "next/image";
 import { Beer } from "@/app/types";
-import SpinnerImageLoader from "./SpinnerImageLoader";
 import CardBeer from "./CardBeer";
-
-type InfiniteScrollPropeties = {
-  search: string | undefined;
-  initialBeers: BeerArray;
-};
-
-// Tipo para um array de propriedades
-type BeerArray = Beer[];
 
 export default function InfiniteScrollBeers({
   search,
@@ -57,19 +46,6 @@ with the `ref` is in view. */
       {beers &&
         beers?.map((beer: Beer) => (
           <li key={beer.id} className="relative">
-            {/* <div className="group aspect-square w-full overflow-hidden rounded-lg bg-gray-100">
-              <Image
-                src={beer.image_url}
-                alt=""
-                className="w-full h-full object-contain group-hover:opacity-75"
-                width={300}
-                height={300}
-              />
-            </div>
-            <p className="mt-2 block truncate font-medium">{beer.name}</p>
-            <p className="block text-sm font-medium text-gray-500">
-              {beer.tagline}
-            </p> */}
             <CardBeer
               image_url={beer.image_url}
               name={beer.name}
