@@ -1,5 +1,3 @@
-"use client";
-
 import { Beer } from "@/app/types";
 import CardBeer from "./CardBeer";
 

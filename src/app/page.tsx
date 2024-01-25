@@ -35,7 +35,7 @@ export default async function Beers({
           className="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2 sm:gap-x-6 md:grid-cols-3 lg:grid-cols-4 xl:gap-x-8">
           {/* <InfinitScrollBeers search={"Dead"} initialBeers={beerList || []} /> */}
           <BeersList beers={beerList} />
-          <LoadMore search={""} />
+          <LoadMore search={search} />
         </ul>
       </div>
     </section>

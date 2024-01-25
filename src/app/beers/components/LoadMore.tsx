@@ -9,23 +9,21 @@ import BeersList from "./BeersList";
 export default function LoadMore({ search }: { search: string | undefined }) {
   const [beers, setBeers] = useState<Beer[]>([]);
   const [page, setPage] = useState(1);
-  const [ref, inView] = useInView();
 
-  /* The `loadMoreBeers` function is a callback function that is used to load
-more beers when the user reaches the end of the page or when an element
-with the `ref` is in view. */
+  const { ref, inView } = useInView();
+
   const loadMoreBeers = useCallback(async () => {
-    const next = page + 1;
-    const beers = await fetchAllBeersAction({
-      search,
-      page: next,
-    });
-    if (beers?.length) {
-      setPage(next);
-      setBeers((prev: Beer[] | undefined) => [
-        ...(prev?.length ? prev : []),
-        ...beers,
-      ]);
+    // Once the page 8 is reached repeat the process all over again.
+    const nextPage = (page % 7) + 1;
+    const newProducts =
+      (await fetchAllBeersAction({
+        search,
+        page: nextPage,
+      })) ?? [];
+    console.log("ewProducts", newProducts);
+    if (newProducts !== null) {
+      setBeers((prevProducts: Beer[]) => [...prevProducts, ...newProducts]);
+      setPage(nextPage);
     }
   }, [page, search, setBeers, setPage]);
 
