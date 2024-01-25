@@ -8,7 +8,7 @@ type searchProps = {
 
 export async function fetchAllBeersAction({ page = 1, search }: searchProps) {
   const perPage = 5;
-  const apiUrl = `https://api.punkapi.com/v2/beers?page=${page}&per_page=${perPage}&beer_name=${search}`;
+  const apiUrl = `https://api.punkapi.com/v2/beers?page=${page}&per_page=${perPage}`;
   try {
     const response = await fetch(apiUrl);
     const data = await response.json();

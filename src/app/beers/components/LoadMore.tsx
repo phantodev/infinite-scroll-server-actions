@@ -4,16 +4,10 @@ import { useCallback, useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { fetchAllBeersAction } from "../actions";
 import { Beer } from "@/app/types";
-import CardBeer from "./CardBeer";
+import BeersList from "./BeersList";
 
-export default function InfiniteScrollBeers({
-  search,
-  initialBeers,
-}: {
-  search: string | undefined;
-  initialBeers: Beer[] | undefined;
-}) {
-  const [beers, setBeers] = useState(initialBeers);
+export default function LoadMore({ search }: { search: string | undefined }) {
+  const [beers, setBeers] = useState<Beer[]>([]);
   const [page, setPage] = useState(1);
   const [ref, inView] = useInView();
 
@@ -43,17 +37,7 @@ with the `ref` is in view. */
 
   return (
     <>
-      {beers &&
-        beers?.map((beer: Beer) => (
-          <li key={beer.id} className="relative">
-            <CardBeer
-              image_url={beer.image_url}
-              name={beer.name}
-              tagline={beer.tagline}
-            />
-          </li>
-        ))}
-
+      <BeersList beers={beers} />
       {/* loading spinner */}
       <div
         ref={ref}
