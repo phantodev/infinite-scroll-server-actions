@@ -4,6 +4,7 @@ import { fetchAllBeersAction } from "./beers/actions";
 // import InfinitScrollBeers from "./beers/components/InfinitScrollBeers";
 import BeersList from "./beers/components/BeersList";
 import LoadMore from "./beers/components/LoadMore";
+import Search from "./beers/components/Search";
 
 export default async function Beers({
   searchParams,
@@ -21,12 +22,12 @@ export default async function Beers({
   return (
     <section className="">
       <div className="container p-6">
-        <div className="mb-12 flex items-center justify-between gap-x-16">
+        <div className="mb-12 flex items-center justify-between gap-x-16 flex-col lg:flex-row">
           <h1 className="flex-1 text-3xl font-bold">Lista de Bebidas</h1>
 
-          {/* <div className='flex-1'>
+          <div className="flex-1 mt-6 lg:mt-0">
             <Search search={search} />
-          </div> */}
+          </div>
         </div>
 
         <ul

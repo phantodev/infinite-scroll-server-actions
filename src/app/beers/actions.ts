@@ -19,6 +19,7 @@ export async function fetchAllBeersAction({
     apiUrl += `&beer_name=${search}`;
   }
   try {
+    console.log(apiUrl);
     const response = await fetch(apiUrl);
     const data = await response.json();
     return data as Beer[];
