@@ -27,15 +27,17 @@ export default function CardBeer({
   return (
     <>
       <div className="relative group aspect-square w-full overflow-hidden rounded-lg bg-zinc-900 flex justify-center items-center font-bold">
-        <Image
-          src={image_url}
-          alt=""
-          className="w-full h-full object-contain group-hover:opacity-75 transition-opacity opacity-0 duration-1000"
-          width={300}
-          height={300}
-          onLoad={(e) => handleImageLoad(e.target as HTMLImageElement)}
-          onError={handleImageError}
-        />
+        {image_url !== null && (
+          <Image
+            src={image_url}
+            alt=""
+            className="w-full h-full object-contain group-hover:opacity-75 transition-opacity opacity-0 duration-1000"
+            width={300}
+            height={300}
+            onLoad={(e) => handleImageLoad(e.target as HTMLImageElement)}
+            onError={handleImageError}
+          />
+        )}
         {loading && (
           <div className="text-black absolute">
             <SpinnerImageLoader />
